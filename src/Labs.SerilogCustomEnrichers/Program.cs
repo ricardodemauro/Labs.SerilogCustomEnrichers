@@ -8,8 +8,9 @@ Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
     .MinimumLevel.Override("Default", LogEventLevel.Information)
     .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
-    .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] [{RequestScheme}://{RequestHost} [{ClientIp}] {Message:lj}{NewLine}{Exception}")
+    .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {ApplicationName} {Level:u3}] [{RequestScheme}://{RequestHost} [{ClientIp}] {Message:lj}{NewLine}{Exception}")
     .Enrich.FromLogContext()
+    .Enrich.WithProperty("ApplicationName", "SerilogCustomEnrichers")
     .CreateLogger();
 
 try
